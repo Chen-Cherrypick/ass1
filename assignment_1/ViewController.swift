@@ -9,11 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    lazy var game = Concentration(numberOfMatchingCards: (cardsButtons.count+1)/2)
+    
+    
+    @IBOutlet var cardButton: [UIButton]!
+
+    @IBAction func cardClicked(_ sender: UIButton) {
+        
     }
-
-
+    
 }
+
+
 

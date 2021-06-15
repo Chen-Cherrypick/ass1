@@ -13,6 +13,8 @@
 		CDB1C4C82678DAB4007F283B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB1C4C62678DAB4007F283B /* Main.storyboard */; };
 		CDB1C4CA2678DAB5007F283B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB1C4C92678DAB5007F283B /* Assets.xcassets */; };
 		CDB1C4CD2678DAB5007F283B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB1C4CB2678DAB5007F283B /* LaunchScreen.storyboard */; };
+		CDB1C4D62678E48C007F283B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1C4D52678E48C007F283B /* Card.swift */; };
+		CDB1C4D82678E587007F283B /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1C4D72678E587007F283B /* Concentration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CDB1C4C92678DAB5007F283B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDB1C4CC2678DAB5007F283B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDB1C4CE2678DAB5007F283B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDB1C4D52678E48C007F283B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		CDB1C4D72678E587007F283B /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,25 @@
 		CDB1C4BF2678DAB4007F283B /* assignment_1 */ = {
 			isa = PBXGroup;
 			children = (
-				CDB1C4C02678DAB4007F283B /* AppDelegate.swift */,
+				CDB1C4D42678E031007F283B /* additional files */,
 				CDB1C4C22678DAB4007F283B /* SceneDelegate.swift */,
 				CDB1C4C42678DAB4007F283B /* ViewController.swift */,
+				CDB1C4D52678E48C007F283B /* Card.swift */,
+				CDB1C4D72678E587007F283B /* Concentration.swift */,
 				CDB1C4C62678DAB4007F283B /* Main.storyboard */,
-				CDB1C4C92678DAB5007F283B /* Assets.xcassets */,
-				CDB1C4CB2678DAB5007F283B /* LaunchScreen.storyboard */,
 				CDB1C4CE2678DAB5007F283B /* Info.plist */,
 			);
 			path = assignment_1;
+			sourceTree = "<group>";
+		};
+		CDB1C4D42678E031007F283B /* additional files */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1C4C02678DAB4007F283B /* AppDelegate.swift */,
+				CDB1C4C92678DAB5007F283B /* Assets.xcassets */,
+				CDB1C4CB2678DAB5007F283B /* LaunchScreen.storyboard */,
+			);
+			path = "additional files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB1C4C52678DAB4007F283B /* ViewController.swift in Sources */,
+				CDB1C4D82678E587007F283B /* Concentration.swift in Sources */,
 				CDB1C4C12678DAB4007F283B /* AppDelegate.swift in Sources */,
 				CDB1C4C32678DAB4007F283B /* SceneDelegate.swift in Sources */,
+				CDB1C4D62678E48C007F283B /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
