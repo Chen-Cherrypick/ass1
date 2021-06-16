@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card{
+struct Card{
     
     static var idCount = 0
     var isFaceUp = false
@@ -20,6 +20,6 @@ class Card{
     }
     
     init() {
-        id = Card.UniqueIDMaker()
+        self.id = Card.UniqueIDMaker()
     }
 }
