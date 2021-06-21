@@ -36,16 +36,32 @@ class ViewController: UIViewController {
         countFlips.attributedText = attributeString
     }
     
+    @IBOutlet private weak var scoreLbl: UILabel! {
+        didSet{
+            updateScoreLabel()
+        }
+    }
+    
     private(set) var score = 0 {
         didSet{
-            scoreLbl.text = "Score: \(score)"
+            updateScoreLabel()
         }
+      
+    }
+    
+    private func updateScoreLabel (){
+        let attributesScoreLabel: [NSAttributedString.Key : Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        ]
+        let attributeString = NSAttributedString(string: "Score: \(score)", attributes: attributesScoreLabel)
+        scoreLbl.attributedText = attributeString
     }
     
     
     lazy var themeChoice = Int(arc4random_uniform(UInt32(emojiChoices.count)))
     
-    @IBOutlet private weak var scoreLbl: UILabel!
+    
     @IBOutlet private var cardButton: [UIButton]!
     
     @IBAction func cardClicked(_ sender: UIButton) {
