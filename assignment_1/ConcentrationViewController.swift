@@ -7,20 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
     
-    lazy var game = Concentration(numberOfMatchingCards: (cardButton.count+1)/2)
+    lazy var game = Concentration(numberOfPairsOfCards: (cardButton.count+1)/2)
     
-    @IBOutlet weak var countFlips: UILabel!
+    @IBOutlet weak var countFlipsLabel: UILabel!
     
     var counterFlips = 0 {
         didSet {
-            countFlips.text = "Flips: \(counterFlips)"
+            countFlipsLabel.text = "Flips: \(counterFlips)"
         }
     }
     
     var score = 0 {
-        didSet{
+        didSet {
             scoreLbl.text = "Score: \(score)"
         }
     }
@@ -32,12 +32,10 @@ class ViewController: UIViewController {
     @IBOutlet var cardButton: [UIButton]!
     
     @IBAction func cardClicked(_ sender: UIButton) {
-//        counterFlips += 1
         if let cardNumber = cardButton.firstIndex(of: sender){
-            let result = game.chooseCard(at: cardNumber)
-            counterFlips  = result.0
-            score = result.1
-//            countFlips.text = "Flips: \(counterFlips)"
+            game.chooseCard(at: cardNumber)
+            counterFlips  = game.flipCount
+            score = game.score
             updateViewFromModel()
         }
         
@@ -48,9 +46,9 @@ class ViewController: UIViewController {
             let button = cardButton[index]
             let card = game.cards[index]
             if card.isFaceUp{
-                button.setTitle(emoji (for:card), for: UIControl.State.normal)
+                button.setTitle(emoji(for: card), for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 0.8903092742, green: 0.7925885916, blue: 0.7986693978, alpha: 1)
-            }else{
+            } else {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = card.isMatched ?  #colorLiteral(red: 0.8590755463, green: 1, blue: 0.5956398249, alpha: 0) :  #colorLiteral(red: 1, green: 0.9017891288, blue: 0.903757751, alpha: 1)
             }
@@ -58,7 +56,7 @@ class ViewController: UIViewController {
     }
     
     
-    var emojiChoices = [[String]]()
+    lazy var emojiChoices = [foodEmoji,animalEmoji,facesEmoji,flagEmoji,carsEmoji,clothesEmoji]
     var  emoji = [Int:String]()
     
     
@@ -71,13 +69,7 @@ class ViewController: UIViewController {
     
     
     
-    func emoji (for card : Card) -> String{
-        emojiChoices.append(foodEmoji)
-        emojiChoices.append(animalEmoji)
-        emojiChoices.append(facesEmoji)
-        emojiChoices.append(flagEmoji)
-        emojiChoices.append(carsEmoji)
-        emojiChoices.append(clothesEmoji)
+    func emoji(for card : Card) -> String{
         if emoji[card.id] == nil , emojiChoices.count>0 {
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices[themeChoice].count)))
             emoji[card.id] = emojiChoices[themeChoice].remove(at: randomIndex)
@@ -91,8 +83,7 @@ class ViewController: UIViewController {
         counterFlips = 0
         score = 0
         themeChoice = Int(arc4random_uniform(UInt32(emojiChoices.count)))
-        game = Concentration(numberOfMatchingCards: (cardButton.count+1)/2)
-        game.restartGame()
+        game = Concentration(numberOfPairsOfCards: (cardButton.count+1)/2)
         updateViewFromModel()
     }
     

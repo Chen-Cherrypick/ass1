@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card{
+struct Card {
     
     static var idCount = 0
     var isFaceUp = false
