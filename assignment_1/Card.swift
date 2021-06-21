@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct Card: Hashable{
+
+struct Card: Hashable {
+
     
     var hashValue: Int {return id}
-    static func ==(lhs: Card, rhs: Card)-> Bool{
+    static func ==(lhs: Card, rhs: Card)-> Bool {
         return lhs.id == rhs.id
     }
     
@@ -23,12 +25,13 @@ struct Card: Hashable{
     var isMatched = false
     private var id : Int
     
-    private static func UniqueIDMaker() -> Int{
+
+    private static func makeUniqueId() -> Int {
         idCount += 1
         return idCount
     }
     
     init() {
-        self.id = Card.UniqueIDMaker()
+        self.id = Card.makeUniqueId()
     }
 }

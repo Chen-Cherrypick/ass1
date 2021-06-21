@@ -15,7 +15,7 @@ class Concentration {
         get {
             return cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly
         }
-        set (newValue){
+        set (newValue) {
             for index in cards.indices {
                 cards[index].isFaceUp = (index == newValue)
             }
@@ -29,55 +29,53 @@ class Concentration {
     var seenCards = [Card]()
     
     
-    func chooseCard ( at index: Int)-> (Int,Int){
+    func checkIfTwoCardsMatched(card1 index1: Int, newCard index2: Int) {
+        if cards[index1] == cards[index2] {
+            cards[index1].isMatched = true;
+            cards[index2].isMatched = true;
+            score+=2
+        } else {
+            if (!seenCards.contains(cards[index2])) {
+                seenCards.append(cards[index2])
+            } else {
+                score -= 1
+            }
+            if (!seenCards.contains(cards[index1])) {
+                seenCards.append(cards[index1])
+            } else {
+                score -= 1
+            }
+        }
+        cards[index2].isFaceUp = true
+    }
+    
+    
+
+    func chooseCard (at index: Int) {
         assert(cards.indices.contains(index),"concentration.chooeCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched{
             if let matchIndex = indexOfOneCardFaceUp , matchIndex != index{
-                // check if card match
-                if cards[matchIndex] == cards[index]{
-                    cards[matchIndex].isMatched = true;
-                    cards[index].isMatched = true;
-                    score+=2
-                } else{
-                    if (!seenCards.contains(cards[index])){
-                        seenCards.append(cards[index])
-                    }else{
-                        score -= 1
-                    }
-                    if (!seenCards.contains(cards[matchIndex])){
-                        seenCards.append(cards[matchIndex])
-                    }else{
-                        score -= 1
-                    }
-                }
-                cards[index].isFaceUp = true
+                checkIfTwoCardsMatched(card1: matchIndex, newCard: index)
             } else {
-
-                indexOfOneCardFaceUp = index
-
+                for flipIndex in cards.indices{
+                cards[flipIndex].isFaceUp = false
+            }
+            cards[index].isFaceUp = true
+            indexOfOneCardFaceUp = index
             }
             flipCount+=1
-           
         }
-        
-        return (flipCount,score)
     }
     
-    init (numberOfMatchingCards:Int){
-        assert(numberOfMatchingCards>0,"concentration.init(nunmberOfPairs: \(numberOfMatchingCards)): you must have at least one pair of cards")
-        for _ in 0...numberOfMatchingCards{
+    init(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards>0,"concentration.init(nunmberOfPairs: \(numberOfPairsOfCards)): you must have at least one pair of cards")
+        for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card,card]
         }
         cards.shuffle()
     }
     
-    func restartGame (){
-        for flipIndex in cards.indices{
-            cards[flipIndex].isFaceUp = false
-            cards[flipIndex].isMatched = false
-        }
-    }
 }
 
 
