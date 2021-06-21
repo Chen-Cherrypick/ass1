@@ -14,12 +14,12 @@ struct Card {
     var isMatched = false
     var id : Int
     
-    static func UniqueIDMaker() -> Int{
+    static func makeUniqueId() -> Int{
         idCount += 1
         return idCount
     }
     
     init() {
-        self.id = Card.UniqueIDMaker()
+        self.id = Card.makeUniqueId()
     }
 }
